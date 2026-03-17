@@ -1,0 +1,123 @@
+@use 'helpers' as *;
+
+.container {
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+    @include visually-hidden
+}
+
+// скрыть на мобильных, отобразить на ширине выше
+.hidden-mobile {
+    @include mobile {
+        display: none !important;
+    }
+}
+
+// отобразить на мобильных и скрыть на ширине выше
+.visible-mobile {
+    @include mobile-above {
+        display: none !important;
+    }
+}
+
+// рисуем линию выходящую за границы контейнера
+.full-vw-line {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    width: calc(
+      (100vw - var(--container-width)) / 2 
+    ); // от всего экрана отнимаем ширину контейнера и делим на 2 чтобы получить ширину
+    // линии недостающую до границы экрана
+    height: rem(1);
+    background-color: var(--color-dark-15);
+  }
+
+  &--top {
+    &::before {
+      content: '';
+      bottom: 100%;
+    }
+  }
+
+  &--bottom {
+    &::after {
+      content: '';
+      top: 100%;
+    }
+  }
+
+  &--left {
+    &::before,
+    &::after {
+      right: 100%;
+    }
+  }
+
+  &--right {
+    &::before,
+    &::after {
+      left: 100%;
+    }
+  }
+}
+
+.circle-icon {
+  --circleSize: #{rem(52)};
+  --circleMarginLeft: rem(20);
+
+  position: relative;
+  min-height: var(--circleSize);
+  padding-right: calc(var(--circleMarginLeft) + var(--circleSize));
+
+            @include laptop {
+                --circleSize: #{rem(44)};
+                --circleMarginLeft: rem(14);
+            }
+
+            @include mobile {
+                 --circleSize: #{rem(40)};
+            }
+
+    &::after {
+            --circleSize: #{rem(52)};
+            --circleMarginLeft: rem(20);
+
+            @include abs-y;
+            @include square(var(--circleSize));
+            
+            content: '';
+            border-radius: 50%;
+            right: 0;
+            background: url('../../icons/arrow-rop-right-black.svg') center no-repeat
+            var(--color-accent);
+
+            @include laptop {
+                --circleSize: #{rem(44)};
+                --circleMarginLeft: rem(14);
+            }
+
+            @include mobile {
+                 --circleSize: #{rem(40)};
+            }
+        }        
+
+
+}
+
+// или задать самйо секции postion: relative и задать размеры и положение линии
+//   &::after {
+//          content: '';
+//          position: absolute;
+//          height: rem(1);
+//          width: calc((100vw - var(--container-width)) / 2);
+//          background-color: var(--color-dark-15);
+//          bottom: 100%;
+//          right: 100%;
+//         }

@@ -1,0 +1,138 @@
+@use 'helpers' as *;
+
+// если нужно найти секцию которая выходит за контейнер и ломает верстку
+// * {
+//     outline: rem(1) solid green !important;
+// }
+
+html {
+    &.is-lock {
+        overflow: hidden; // убрать скролл страницы при открытой модалке overlay
+    }
+}
+
+body {
+    @include fluid-text(18, 14);
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--font-family-base);
+    letter-spacing: -0.03em;
+    color: var(--color-gray-50);
+    background-color: var(--color-dark);
+}
+
+main {
+    flex-grow: 1; // body сделали флекс контейнером в колонку и через grow растягиваем содержимое 
+// т.е main по максимуму
+}
+// иногда элемент по смыслу не заголовок но выглядит похоже
+// поэтому дублируем вместе с тегами еще и классы
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    color: var(--color-light);
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+    font-family: var(--font-family-accent);
+    font-weight: 500;
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    font-weight: 600;
+}
+
+h1, .h1 {
+    @include fluid-text(70, 30);
+
+    line-height: 1.2;
+}
+
+h2, .h2 {
+    @include fluid-text(58, 28);
+
+    line-height: 1.3;
+}
+
+h3, .h3 {
+    @include fluid-text(40, 24);
+
+    line-height: 1.5;
+}
+
+h4, .h4 {
+    @include fluid-text(26, 18);
+
+    line-height: 1.5;
+}
+
+h5, .h5 {
+     @include fluid-text(24, 18);
+
+     line-height: 1.5;
+}
+
+h6, .h6 {
+     @include fluid-text(20, 16);
+
+     line-height: 1.5;
+}
+
+// добавляем интерактивности эл-там и их внутренностям через svg *
+a,
+input,
+button,
+label,
+textarea,
+select,
+svg * {
+    transition-duration: var(--transition-duration);
+}
+// наследуем одинаковый цвет от обычного текста body 
+// и отключаем подчеркивание ссылок именно по опредленному классу
+// чтобы среди обычного текста ссылка не терялась как тоже пустой текст
+a {
+    color: inherit;
+    
+    &[class] {
+        text-decoration: none;
+    }
+
+    @include hover {
+        color: var(--color-accent);
+    }
+  }
+// обводка фокуса для ссылки при навигировании по ней с клавиатурры
+// 2px пунктирная рамка белого цвета с отступом от элемента на 4 px
+    :focus-visible {
+        outline: rem(2) dashed var(--color-light);
+        outline-offset: rem(4);
+        transition-duration: 0s !important;
+    }
+
+// Всем интерактивным эл-там таким как ссылки и кнопки содержащие только изображение (а такие 
+// для большего accessibility имеют атрибут aria-label) расширяем область нажатия через псевдоэлемент
+a, 
+button {
+    &[aria-label] {
+        position: relative;
+
+        &::before {
+            @include abs-center;
+            @include square(rem(44));
+
+            content: '';
+        }
+    }
+}
+
+
