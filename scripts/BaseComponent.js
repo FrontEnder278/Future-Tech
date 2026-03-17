@@ -5,7 +5,7 @@ class BaseComponent {
                 throw new Error('Невозможно создать экземпляр абстрактного класса BaseComponent')
             }
         }
-    geProxyState(initialState) {
+    getProxyState(initialState) {
         return new Proxy(initialState, {
             get: (target, prop) => {
                 return target[prop]
