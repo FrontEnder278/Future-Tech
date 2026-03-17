@@ -1,0 +1,82 @@
+@use '../helpers' as *;
+
+.tabs {
+
+    &__header {
+
+        @include tablet {
+            overflow-x: auto; // горизонтальный скролл
+        } 
+    }
+
+    &__buttons {
+        padding-block: fluid(50, 20);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        column-gap: rem(20);
+
+        @include laptop {
+          column-gap: rem(14);
+        }
+
+        @include tablet {
+            width: max-content; // элемент занимает ровно столько места 
+// сколько нужно его контенту
+        }
+
+        &--compact {
+            display: inline-flex;
+            padding: rem(10);
+            background-color: var(--color-dark);
+            border-radius: rem(10);
+            column-gap: rem(10);
+        
+        .tabs__button {
+            padding: rem(18) rem(38);
+
+            @include laptop {
+                padding: rem(14) rem(24);
+            }
+
+            &.is-active {
+                font-weight: 400;
+            }
+          }
+       }
+    }
+
+    &__button {
+        padding: fluid(30, 18) rem(10);
+        border: var(--border);
+        border-radius: rem(8);
+        font-size: rem(18);
+        color: var(--color-gray-60);
+        background-color: transparent;
+
+        @include hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        @include laptop {
+            font-size: rem(14);
+        }
+
+        &.is-active {
+            background-color: var(--color-dark-10);
+            color: var(--color-light);
+            font-weight: 500;
+            pointer-events: none;
+        }
+    }
+
+    &__content {
+        &:not(.is-active) {
+            display: none;
+        }
+
+        &:focus-visible {
+           outline-offset: -1rem;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+@use '../helpers' as *;
+
+.expandable-content {
+    position: relative;
+    overflow-y: hidden;
+
+    &.is-expanded {
+        &::before,
+        .expandable-content__button {
+            @include hide;
+        } // при добавлении класса градиент уходит
+    }
+
+    &:not(is-expanded) {
+        max-height: var(--initialMaxHeight);
+    }
+
+    &::before {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30%;
+        background-image: linear-gradient( 
+        180deg,
+         rgba(20, 20, 20, 0) 0%,
+         #141414 77.38%
+    );
+    pointer-events: none;
+    transition-duration: var(--transition-duratuin);
+    }
+
+    &__button {
+        @include abs-x;
+        bottom: rem(68);
+    }
+}

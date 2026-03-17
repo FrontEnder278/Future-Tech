@@ -1,0 +1,34 @@
+@use '../helpers' as *;
+
+.rating-view {
+    display: inline-flex;
+    column-gap: rem(7);
+    border-radius: rem(100);
+    background-color: var(--color-dark);
+    padding: rem(10) rem(16);
+    border: var(--border);
+
+    &__star {
+            --size: #{rem(24)};
+            @include square(var(--size));
+            background: url('../../icons/star_gray.svg')
+             center/contain no-repeat;
+            
+             &.is-active {
+                background: url('../../icons/star_yellow.svg')
+                 center/contain no-repeat;
+            }
+
+
+            @include laptop {
+                --size: #{rem(20)};
+            }
+
+            
+        }
+
+    @include laptop {
+        column-gap: rem(4);
+        padding: rem(8) rem(12);
+    }
+}

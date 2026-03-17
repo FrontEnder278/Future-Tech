@@ -1,0 +1,23 @@
+@use '../helpers' as *;
+
+.tile {
+
+    padding: fluid(40, 24);
+   
+    row-gap: fluid(20, 4);
+    background-color: var(--color-dark-10);
+    border-radius: rem(12);
+    border: var(--border);
+
+    @include laptop {
+        border-radius: rem(10);
+    }
+
+    &--soc1al {
+        padding: rem(18) rem(30);
+
+        @include laptop {
+            padding: rem(14) rem(24);
+        }
+    }
+}

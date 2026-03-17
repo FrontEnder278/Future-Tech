@@ -1,0 +1,156 @@
+@use '../helpers' as *;
+
+.bordered-grid {
+    --columns: 1;
+    --itemPaddingY: #{fluid(80, 40)};
+    
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+
+    &--2-cols {
+        --columns: 2;
+        --itemPaddingX: #{rem(80)};
+
+        @include mobile-above {
+            .bordered-grid__item {
+
+        &:nth-child(odd) {
+            padding-right: var(--itemPaddingX);
+            border-right: var(--border);
+        }
+
+        &:nth-child(even) {
+            @include full-vw-centered-line(
+                bottom,
+                auto,
+                100%,
+                50%);
+
+            padding-left: var(--itemPaddingX);
+        }
+      }
+    }
+         
+        @include laptop {
+            --itemPaddingX: #{rem(50)};
+        }
+
+        @include mobile {
+            --columns: 1;
+
+            .bordered-grid__item:nth-child(1) {
+                order: 3;
+            }
+            .bordered-grid__item:nth-child(4) {
+                order: 2;
+            }
+
+            .bordered-grid__item:nth-child(3) {
+                order: 1;
+            }
+            .bordered-grid__item:nth-child(2) {
+                order: 3;
+            }
+            
+            .bordered-grid__item:not(:last-child) {
+                border-bottom: var(--border)
+            }
+        }
+    }
+
+    &--3-cols {
+        --columns: 3;
+        --itemPaddingX: #{rem(50)};
+
+        column-gap: calc(var(--itemPaddingX) * 2);
+
+        @include laptop {
+            --itemPaddingX: #{rem(40)};
+        }
+
+        @include tablet-above {
+// элементы в 1 и 2 колонке
+        .bordered-grid__item {
+            &:nth-child(3n - 2),
+            &:nth-child(3n - 1) {
+                // padding-right: var(--itemPaddingX);
+                // border-right: var(--border);
+                position: relative;
+
+                &::after {
+                    position: absolute;
+                    content: '';
+                    width: rem(1);
+                    height: 100%;
+                    top: 0;
+                    left: calc(100% + var(--itemPaddingX));
+                    background-color: var(--color-dark-15);
+                }
+            }
+// элемент2 во 2 колонке
+            &:nth-child(3n - 1) {
+                @include full-vw-centered-line(bottom);
+            }
+
+// элементы в 2 и 3 колонке
+            // &:nth-child(3n - 1),
+            // &:nth-child(3n) {
+            //      padding-left: var(--itemPaddingX);
+            // }
+          }
+        }
+        
+        @include tablet {
+           --columns: 1;
+        }
+    }
+
+    &--4-cols {
+            --columns: 4;
+            --itemPaddingX: #{rem(50)};
+
+            @include laptop {
+                --itemPaddingX: #{rem(30)};
+            }
+
+            column-gap: calc(var(--itemPaddingX) * 2);
+
+            @include tablet {
+                --columns: 2;
+            }
+
+            @include mobile {
+                --columns: 1;
+
+                .bordered-grid__item {
+                    &:not(:last-child) {
+                  border-bottom: var(--border);
+                }
+                }
+              }
+
+               @include mobile-above {
+                .bordered-grid__item {
+                     &:not(:last-child) {
+                        position: relative;
+
+                        &::after {
+                            position: absolute;
+                            content: '';
+                            width: rem(1);
+                            height: 100%;
+                            background-color: var(--color-dark-15);
+                            left: calc(100% + var(--itemPaddingX));
+                            top: 0;
+                        }
+                     }
+                 }
+              }
+            }
+
+        &__item {
+        padding-block: var(--itemPaddingY);
+       }
+}
+
+    

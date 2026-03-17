@@ -1,0 +1,35 @@
+@use '../helpers' as *;
+
+.team {
+// переменная чтобы было проще в дальнейшем переопределять значение
+    --personImageSize: #{rem(60)};
+
+    display: flex;
+    padding: rem(10);
+    background-color: var(--color-dark-10);
+    border-radius: rem(42);
+    
+    @include laptop {
+        --personImageSize: #{rem(50)};
+        padding: rem(8);
+    }
+
+    @include tablet {
+        --personImageSize: #{rem(40)};
+    }
+
+    &__person {
+        background-color: var(--color-dark-15);
+        border-radius: 50%;
+        width: var(--personImageSize);
+        border: rem(2) solid var(--color-dark-40);
+
+        @include laptop {
+            border-width: rem(1);
+        }
+//  делаем сдвиг иконок влево друг на друга
+        &:not(:first-child) {
+            margin-left: calc(var(--personImageSize) / 4 * -1);
+        }
+    }
+}

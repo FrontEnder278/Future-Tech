@@ -1,0 +1,41 @@
+@use '../helpers' as *;
+
+.video-card {
+
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(30);
+    height: 100%;
+
+    @include laptop {
+        row-gap: rem(20);
+    }
+
+    &__body {
+        display: grid;
+        row-gap: fluid(10, 4);
+        flex-grow: 1;
+
+        &:has(.video-card__link) {
+            row-gap: fluid(20, 16);
+        }
+    }
+
+    &__title {
+        font-family: var(--font-family-base);
+    }
+
+    &__description {
+        color: var(--color-gray-60);
+    }
+
+    &__link {
+        display: inline-flex;
+        justify-self: flex-start;
+
+        @include tablet {
+            max-width: rem(500);
+            width: 100%;
+        }
+    }
+}

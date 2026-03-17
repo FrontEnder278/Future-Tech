@@ -1,0 +1,48 @@
+@use '../helpers' as *;
+
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    column-gap: rem(10);
+    color: var(--color-light);
+    
+    @include laptop {
+        column-gap: rem(6);
+    }
+
+   @include hover {
+     color: var(--color-accent);
+
+     .checkbox__input {
+        border-color: var(--color-accent);
+     }
+   }
+
+    &__input {
+        appearance: none; // позволяет стилизовать чекбокс как угодно
+        --sizeCheckBox: #{rem(28)};
+
+        @include square(var(--sizeCheckBox));
+        @include flex-center;
+        border: var(--border);
+        background-color: var(--color-dark-10);
+        border-radius: rem(4);
+        margin: 0;
+
+        @include laptop {
+             --sizeCheckBox: #{rem(24)};
+        }
+
+        &:not(:checked) {
+            &::after {
+                @include hide 
+            }
+        }
+
+        &::after {
+            content: '✔';
+            color: var(--color-light);
+            transition-duration: var(--transition-duration);   
+        }
+    }
+}
