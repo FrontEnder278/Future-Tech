@@ -86,7 +86,7 @@
         padding-bottom: rem(80);
         
         background:
-         url(../../images/resources-preview/bg.png) 0 0/cover no-repeat;
+         url(../images/resources-preview/bg.png) 0 0/cover no-repeat;
 
          @include laptop {
          padding-left: rem(50);
@@ -103,7 +103,7 @@
             padding: rem(100) rem(40) rem(40);
 
             background-image: 
-             url('../../images/resources-preview/bg_tablet.png');
+             url(../images/resources-preview/bg_tablet.png);
              background-position: contain;
          }
 
