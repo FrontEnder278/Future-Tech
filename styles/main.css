@@ -1013,42 +1013,38 @@ button[aria-label]::before {
   }
 }
 
-.advantage-card {
+.advantage__card {
   display: grid;
   row-gap: 1.875rem;
 }
 @media (width <= 90.06125rem) {
-  .advantage-card {
+  .advantage__card {
     row-gap: 1.25rem;
   }
 }
 @media (width <= 47.99875rem) {
-  .advantage-card {
+  .advantage__card {
     row-gap: 0.875rem;
   }
 }
 @media (width <= 90.06125rem) {
-  .advantage-card__image {
+  .advantage__card-image {
     width: 2.5rem;
   }
 }
 @media (width <= 47.99875rem) {
-  .advantage-card__image {
+  .advantage__card-image {
     width: 1.875rem;
   }
 }
-.advantage-card__link {
+.advantage__card-link {
   display: grid;
   row-gap: 0.25rem;
 }
-@media (width <= 90.06125rem) {
-  .advantage-card__link {
-    row-gap: 0.125rem;
-  }
-}
-.advantage-card__details {
-  font-size: clamp(0.875rem, 0.7541322314rem + 0.4958677686vw, 1.25rem);
+.advantage__card-details {
+  font-size: clamp(0.875rem, 0.7794117647rem + 0.3921568627vw, 1.25rem);
   font-family: var(--font-family-accent);
+  color: var(--color-gray-60);
 }
 
 @media (width > 63.99875rem) {
