@@ -2245,7 +2245,7 @@ button[aria-label]::before {
 }
 @media (width <= 47.99875rem) {
   .blog-details__banner {
-    background: linear-gradient(180deg, rgba(20, 20, 20, 0) 0%, rgba(20, 20, 20, 0.88) 75.52%, #141414 100%), url("../../images/blog-details/banner-mobile.jpg") center/cover no-repeat;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0) 0%, rgba(20, 20, 20, 0.88) 75.52%, #141414 100%), url("../images/blog-details/banner-mobile.jpg") center/cover no-repeat;
   }
 }
 .blog-details__title {
