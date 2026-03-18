@@ -291,7 +291,7 @@ svg * {
 }
 .full-vw-line::before, .full-vw-line::after {
   position: absolute;
-  width: calc((var(--100vw) - var(--container-width)) / 2);
+  width: calc(100vw - var(--container-width) / 2);
   height: 0.0625rem;
   background-color: var(--color-dark-15);
 }
